@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -153,7 +152,6 @@
 </div>
 
 <!-- ===== TREINO ===== -->
-
 <div id="treino" class="page active">
   <div class="pills4">
     <div class="pill"><div class="pill-v">165 lb</div><div class="pill-l">peso atual</div></div>
@@ -192,7 +190,6 @@
 </div>
 
 <!-- ===== DIETA — TREINO ===== -->
-
 <div id="dieta-treino" class="page">
   <div class="sl">Macros — dia de treino</div>
   <div class="macro3">
@@ -247,7 +244,6 @@
 </div>
 
 <!-- ===== DIETA — DESCANSO ===== -->
-
 <div id="dieta-descanso" class="page">
   <div class="sl">Macros — dia de descanso / cardio</div>
   <div class="macro3">
@@ -299,7 +295,6 @@
 </div>
 
 <!-- ===== OPÇÕES REFEIÇÕES ===== -->
-
 <div id="refeicoes" class="page">
   <div class="sl">Todas as opções confirmadas</div>
   <div class="swap2">
@@ -333,7 +328,6 @@
 </div>
 
 <!-- ===== PROGRESSÃO ===== -->
-
 <div id="progressao" class="page">
   <div class="alert ai">Não adicionas peso toda semana de forma automática. Adicionas quando <strong>mereces</strong> — quando completas todas as séries no topo da faixa de reps com boa forma, duas sessões seguidas.</div>
 
@@ -364,7 +358,6 @@
 </div>
 
 <!-- ===== ALONGAMENTO ===== -->
-
 <div id="alongamento" class="page">
   <div class="alert ai">Alongamento estático no fim de cada sessão é obrigatório — 5 minutos, focado nos músculos trabalhados naquele dia. Reduz dores, melhora recuperação e previne lesões.</div>
 
@@ -418,7 +411,6 @@
 </div>
 
 <!-- ===== DIAS FLEXÍVEIS ===== -->
-
 <div id="flexivel" class="page">
   <div class="sl">Refeições fora e mimos</div>
   <div class="lcard">
@@ -449,7 +441,6 @@
 </div>
 
 <!-- ===== CHECK-IN CLAUDE ===== -->
-
 <div id="checkin" class="page">
   <div class="alert ai">O peso sozinho é um mau indicador durante uma recomposição corporal. Podes perder gordura e ganhar músculo ao mesmo tempo e a balança mal se mexe. Envia estes dados periodicamente para acompanhar a evolução real.</div>
 
@@ -539,9 +530,9 @@ const days={
     {ex:'Levantamento terra romeno',note:'Dobradiça na anca, joelho ligeiramente fletido',s:'3',r:'8–10',w:'45 lb/lado + barra',eq:'barra',t:'n',rest:'2–3 min'},
     {ex:'Leg press',note:'115 lb/lado no sled (~305–330 lb total)',s:'3',r:'8–10',w:'115 lb/lado',eq:'sled',t:'k',rest:'2 min'},
     {ex:'Afundos caminhando',note:'Tronco ereto · afundos regulares também ok se falta espaço',s:'3',r:'10/perna',w:'22,5 lb/halter',eq:'halteres',t:'k',rest:'90 seg'},
-    {ex:'Flexão de pernas',note:'Excêntrico lento — 3 seg a descer',s:'3',r:'10–12',w:'80 lb',eq:'máquina',t:'k',rest:'60 seg'},
+    {ex:'Flexão de pernas',note:'Excêntrico lento — 3 seg a descer',s:'3',r:'10–12',w:'80 lb',eq:'máquina',t:'k',rest:'90 seg'},
     {ex:'Panturrilha sentado',note:'Amplitude total em baixo',s:'4',r:'15–20',w:'45 lb',eq:'máquina',t:'k',rest:'60 seg'},
-    {ex:'Woodchopper',note:'Faz os dois lados · começa pelo lado mais fraco',s:'3',r:'12–15 cada lado',w:'47,5 lb',eq:'cabo',t:'k',rest:'30–45 seg'},
+    {ex:'Woodchopper',note:'Faz os dois lados · começa pelo lado mais fraco',s:'3',r:'12–15 cada lado',w:'47,5 lb',eq:'cabo',t:'k',rest:'60 seg'},
     {ex:'Relaxamento',note:'Flexores da anca, isquiotibiais, quadríceps — 5 min',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
   ]},
   qua:{label:'Quarta-feira — Cardio · Zona 2',type:'c',dur:'40–45 min',rows:[
@@ -553,12 +544,12 @@ const days={
   qui:{label:'Quinta-feira — Superior B · hipertrofia',type:'u',dur:'65–70 min',rows:[
     {ex:'Aquecimento',note:'Band pull-aparts + círculos de braço',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
     {ex:'Supino inclinado halteres',note:'Inclinação 30–45°, tempo controlado',s:'4',r:'10–12',w:'35 lb/halter',eq:'halteres',t:'k',rest:'90 seg–2 min'},
-    {ex:'Pulldown (lat pulldown)',note:'Puxada principal hoje — vai mais pesado',s:'4',r:'10–12',w:'115 lb',eq:'cabo',t:'k',rest:'90 seg'},
+    {ex:'Pulldown (lat pulldown)',note:'Puxada principal hoje — vai mais pesado',s:'3',r:'10–12',w:'115 lb',eq:'cabo',t:'k',rest:'90 seg'},
     {ex:'Remada cabo sentado',note:'Cotovelos junto ao corpo, aperto no final',s:'3',r:'10–12',w:'moderado',eq:'cabo',t:'n',rest:'90 seg'},
     {ex:'Elevação lateral',note:'Leve — forma estrita, sem balanço',s:'4',r:'12–15',w:'halteres leves',eq:'halteres',t:'n',rest:'60 seg'},
-    {ex:'Rosca bíceps',note:'Supinação no topo, excêntrico lento',s:'3',r:'12–15',w:'27,5 lb/halter',eq:'halteres',t:'k',rest:'60 seg'},
+    {ex:'Rosca bíceps',note:'Supinação no topo, excêntrico lento',s:'3',r:'12–15',w:'20 lb/halter',eq:'halteres',t:'k',rest:'90 seg'},
     {ex:'Extensão tríceps corda',note:'Abre a corda em baixo',s:'3',r:'12–15',w:'47,5 lb',eq:'cabo',t:'k',rest:'60 seg'},
-    {ex:'Face pull',note:'Altura dos olhos, rotação externa',s:'3',r:'15–20',w:'leve',eq:'cabo',t:'n',rest:'60 seg'},
+    {ex:'Face pull',note:'Altura dos olhos, rotação externa',s:'2',r:'15–20',w:'leve',eq:'cabo',t:'n',rest:'60 seg'},
     {ex:'Abdominal máquina',note:'',s:'4',r:'12–15',w:'10 lb',eq:'máquina',t:'k',rest:'30–45 seg'},
     {ex:'Relaxamento',note:'Peito, bíceps, tríceps — 5 min',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
   ]},
@@ -567,10 +558,10 @@ const days={
     {ex:'Leg press',note:'115 lb/lado no sled (~305–330 lb total)',s:'4',r:'10–12',w:'115 lb/lado',eq:'sled',t:'k',rest:'2 min'},
     {ex:'Levantamento terra',note:'2–3 min descanso, foco na dobradiça',s:'3',r:'8–10',w:'45 lb/lado + barra',eq:'barra',t:'k',rest:'2–3 min'},
     {ex:'Agachamento búlgaro',note:'Pé traseiro elevado, descida lenta',s:'3',r:'10/perna',w:'peso corp. → halter',eq:'BW/halteres',t:'n',rest:'90 seg'},
-    {ex:'Flexão de pernas',note:'Excêntrico lento',s:'4',r:'12–15',w:'80 lb',eq:'máquina',t:'k',rest:'60 seg'},
+    {ex:'Flexão de pernas',note:'Excêntrico lento',s:'4',r:'12–15',w:'80 lb',eq:'máquina',t:'k',rest:'90 seg'},
     {ex:'Extensão de perna',note:'Não trava em cima',s:'3',r:'12–15',w:'moderado',eq:'máquina',t:'n',rest:'60 seg'},
     {ex:'Panturrilha em pé',note:'Amplitude total, pausa em baixo',s:'4',r:'15–20',w:'moderado',eq:'máquina',t:'n',rest:'60 seg'},
-    {ex:'Woodchopper',note:'Faz os dois lados · começa pelo lado oposto ao de terça',s:'3',r:'12–15 cada lado',w:'47,5 lb',eq:'cabo',t:'k',rest:'30–45 seg'},
+    {ex:'Woodchopper',note:'Faz os dois lados · começa pelo lado oposto ao de terça',s:'3',r:'12–15 cada lado',w:'47,5 lb',eq:'cabo',t:'k',rest:'60 seg'},
     {ex:'Relaxamento',note:'Quadríceps, isquiotibiais, gêmeos — 5 min',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
   ]},
   sab:{label:'Sábado — Cardio · Zona 2',type:'c',dur:'40–45 min',rows:[
@@ -616,6 +607,5 @@ function showPage(id,btn){
 
 renderDay('seg');
 </script>
-
 </body>
 </html>
