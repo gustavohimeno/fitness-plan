@@ -136,7 +136,6 @@
 </style>
 </head>
 <body>
-
 <div class="hdr">
   <div class="hdr-title">Meu Plano de Fitness</div>
   <div class="top-nav">
@@ -150,7 +149,6 @@
     <button class="tnb" onclick="showPage('checkin',this)">Check-in Claude</button>
   </div>
 </div>
-
 <!-- ===== TREINO ===== -->
 <div id="treino" class="page active">
   <div class="pills4">
@@ -159,7 +157,6 @@
     <div class="pill"><div class="pill-v">165 g</div><div class="pill-l">proteína/dia treino</div></div>
     <div class="pill"><div class="pill-v">10.000</div><div class="pill-l">passos/dia</div></div>
   </div>
-
   <div class="sl">Semana — toca num dia</div>
   <div class="wk-grid">
     <div class="db active" onclick="selDay('seg',this)"><div class="dn">Seg</div><span class="dtag tu">Superior A</span></div>
@@ -170,10 +167,8 @@
     <div class="db rbg" onclick="selDay('sab',this)"><div class="dn">Sáb</div><span class="dtag tc">Cardio</span></div>
     <div class="db rbg" onclick="selDay('dom',this)"><div class="dn">Dom</div><span class="dtag tr2">Descanso</span></div>
   </div>
-
   <div class="sl">Detalhes da sessão</div>
   <div id="session-display"></div>
-
   <div class="sl">Tempos de descanso entre séries</div>
   <div class="lcard">
     <div class="lrow"><span class="lrow-n">Compostos com barra (agachamento, terra, remada, press)</span><span class="lrow-v">2–3 min</span></div>
@@ -181,14 +176,12 @@
     <div class="lrow"><span class="lrow-n">Isolados (rosca, tríceps, elevação lateral, panturrilha)</span><span class="lrow-v">60 seg</span></div>
     <div class="lrow alt"><span class="lrow-n">Abdominais e woodchopper</span><span class="lrow-v">30–45 seg</span></div>
   </div>
-
   <div class="sl">Passos diários</div>
   <div class="steps-banner">
     <div class="steps-n">10.000</div>
     <div class="steps-t">passos <strong>todos os dias</strong><br>Dias de ginásio: requer intenção — estaciona longe, escadas, passeio com o cão<br>Dias de cardio: corrida já traz ~5.000–6.000 passos — o resto vem naturalmente<br>Domingo: caminhada leve cobre o resto</div>
   </div>
 </div>
-
 <!-- ===== DIETA — TREINO ===== -->
 <div id="dieta-treino" class="page">
   <div class="sl">Macros — dia de treino</div>
@@ -197,7 +190,6 @@
     <div class="mc"><div class="mc-n">Carboidratos</div><div class="mc-v" style="color:var(--green)">175 g</div><div class="mc-s">700 kcal · 37%</div><div class="mc-bar"><div class="mc-fill" style="width:37%;background:var(--green)"></div></div></div>
     <div class="mc"><div class="mc-n">Gorduras</div><div class="mc-v" style="color:var(--amber)">65 g</div><div class="mc-s">585 kcal · 31%</div><div class="mc-bar"><div class="mc-fill" style="width:31%;background:var(--amber)"></div></div></div>
   </div>
-
   <div class="sl">Proteína detalhada — dia de treino</div>
   <div class="proto-box">
     3–4 ovos no café da manhã · <b>~25 g</b><br>
@@ -207,7 +199,6 @@
     250 ml leite + 25 g whey à noite · <b>~30 g</b>
     <div class="proto-total">Total: ~143–163 g ✓</div>
   </div>
-
   <div class="sl">Linha do tempo</div>
   <div class="tl-wrap">
     <div class="tl-row"><div class="tl-dot key"></div><div class="tl-card key">
@@ -242,7 +233,6 @@
     </div></div>
   </div>
 </div>
-
 <!-- ===== DIETA — DESCANSO ===== -->
 <div id="dieta-descanso" class="page">
   <div class="sl">Macros — dia de descanso / cardio</div>
@@ -251,7 +241,6 @@
     <div class="mc"><div class="mc-n">Proteína</div><div class="mc-v" style="color:var(--blue)">~150 g</div><div class="mc-s">acima do mínimo</div></div>
     <div class="mc"><div class="mc-n">Carboidratos</div><div class="mc-v" style="color:var(--green)">130 g</div><div class="mc-s">porções menores</div></div>
   </div>
-
   <div class="sl">Proteína detalhada — dia de descanso</div>
   <div class="proto-box">
     3 ovos + 30 g whey no café da manhã · <b>~44 g</b><br>
@@ -261,7 +250,6 @@
     <div class="proto-total">Total: ~143–150 g ✓ — acima do limiar de proteção muscular</div>
   </div>
   <div class="alert ai">Nos dias de descanso a meta é ~150 g — ligeiramente abaixo dos 165 g dos dias de treino, mas bem acima do mínimo de 140 g para proteger o músculo. Sem o shake pós-treino, é o equilíbrio certo.</div>
-
   <div class="sl">Linha do tempo</div>
   <div class="tl-wrap">
     <div class="tl-row"><div class="tl-dot key"></div><div class="tl-card key">
@@ -293,7 +281,6 @@
     <div class="alert ai">Nos dias de cardio (Qua/Sáb) a corrida gasta ~350 kcal extra. Não desças abaixo de 1.700 kcal totais.</div>
   </div>
 </div>
-
 <!-- ===== OPÇÕES REFEIÇÕES ===== -->
 <div id="refeicoes" class="page">
   <div class="sl">Todas as opções confirmadas</div>
@@ -310,7 +297,6 @@
     <div class="scard"><div class="scard-t">Noite — alternativa A</div><div class="scard-b">4 ovos cozidos + legumes no vapor. Cozinha 6–8 no domingo, guarda com casca na geladeira a semana toda.</div><div class="scard-k">~280 kcal · ~25 g proteína</div></div>
     <div class="scard"><div class="scard-t">Noite — alternativa B</div><div class="scard-b">150 g de frango (tempero diferente do almoço: páprica + alho + ervas) + salada ou legumes.</div><div class="scard-k">~220 kcal · ~31 g proteína</div></div>
   </div>
-
   <div class="sl">Rotação noturna sugerida</div>
   <div class="lcard">
     <div class="lrow"><span class="lrow-n">Segunda</span><span class="lrow-v">Leite + whey isolado · legumes</span></div>
@@ -326,11 +312,9 @@
     <div class="alert as">Preparo dominical: cozinha 4–5 frangos + 6–8 ovos. Dura a semana toda — zero esforço nas noites de semana.</div>
   </div>
 </div>
-
 <!-- ===== PROGRESSÃO ===== -->
 <div id="progressao" class="page">
   <div class="alert ai">Não adicionas peso toda semana de forma automática. Adicionas quando <strong>mereces</strong> — quando completas todas as séries no topo da faixa de reps com boa forma, duas sessões seguidas.</div>
-
   <div class="sl">Quanto adicionar por tipo de exercício</div>
   <div class="ol2">
     <div class="olc"><div class="olc-t">Compostos com barra</div><div class="olc-b">Agachamento, levantamento terra, remada curvada</div><div class="olc-j">+5 lb por salto</div></div>
@@ -338,7 +322,6 @@
     <div class="olc"><div class="olc-t">Cabo e máquinas</div><div class="olc-b">Leg press, pulldown, remada cabo, extensão, flexão, woodchopper</div><div class="olc-j">+5 lb por salto</div></div>
     <div class="olc"><div class="olc-t">Isolados com halteres</div><div class="olc-b">Rosca bíceps, elevação lateral, extensão tríceps com halteres</div><div class="olc-j">+2,5 lb por halter</div></div>
   </div>
-
   <div class="sl">Baseline atual e meta em 8 semanas</div>
   <div class="lcard">
     <div class="lrow"><span class="lrow-n">Supino halteres <span style="font-size:10px;color:var(--text3)">halteres</span></span><span class="lrow-v">47,5 lb/halter</span><span class="lrow-j">→ 57,5 lb/halter</span></div>
@@ -356,11 +339,9 @@
     <div class="alert as">Meta das 8 semanas: criar o hábito de progredir consistentemente. Quem adiciona 5 lb a cada 2–3 semanas nos compostos está a fazer exatamente o que deve.</div>
   </div>
 </div>
-
 <!-- ===== ALONGAMENTO ===== -->
 <div id="alongamento" class="page">
   <div class="alert ai">Alongamento estático no fim de cada sessão é obrigatório — 5 minutos, focado nos músculos trabalhados naquele dia. Reduz dores, melhora recuperação e previne lesões.</div>
-
   <div class="sl">Fim de cada sessão — 5 minutos</div>
   <div class="stcard">
     <div class="stcard-t">Dias de superior (Seg / Qui)</div>
@@ -391,7 +372,6 @@
       Quadríceps: standing quad stretch · 30 seg cada
     </div>
   </div>
-
   <div class="sl">Domingo — mobilidade (15–20 min)</div>
   <div class="stcard">
     <div class="stcard-t">Sessão semanal de mobilidade</div>
@@ -404,12 +384,10 @@
       Respiração / relaxamento: posição fetal · 2 min
     </div>
   </div>
-
   <div class="sl">Pilates</div>
   <div class="alert as">Vale muito a pena — 1x por semana complementa bem o treino de força. Melhora estabilidade do core, mobilidade da anca e postura. Pode substituir a mobilidade do domingo ou ser feito num dia à parte.</div>
   <div class="alert aw">Se fizeres Pilates, faz num dia de descanso ou após a sessão de ginásio — nunca antes, para não chegar ao ginásio fatigado no core.</div>
 </div>
-
 <!-- ===== DIAS FLEXÍVEIS ===== -->
 <div id="flexivel" class="page">
   <div class="sl">Refeições fora e mimos</div>
@@ -419,7 +397,6 @@
     <div class="lrow"><div style="flex:1"><div style="font-weight:600;font-size:13px;margin-bottom:3px">Frutty, chocolate, gelado — já está coberto</div><div style="font-size:12px;color:var(--text2)">A 1.900 kcal/dia tens ~250 kcal de margem. Frutty no lanche substitui as castanhas — mesmas calorias, mais gostoso.</div></div></div>
     <div class="lrow alt"><div style="flex:1"><div style="font-weight:600;font-size:13px;margin-bottom:3px">Sempre bate a proteína — mesmo nos dias flexíveis</div><div style="font-size:12px;color:var(--text2)">Carboidratos e gorduras podem variar. Proteína não. Ovos + whey + frango = estás coberto independentemente do resto.</div></div></div>
   </div>
-
   <div class="sl">Referência rápida de calorias</div>
   <div class="treat-list">
     <div class="trow" style="background:#FFF8FB">
@@ -439,18 +416,15 @@
     <div class="alert ai">Esses valores são médias. Usa para planeamento aproximado, não para controle preciso.</div>
   </div>
 </div>
-
 <!-- ===== CHECK-IN CLAUDE ===== -->
 <div id="checkin" class="page">
   <div class="alert ai">O peso sozinho é um mau indicador durante uma recomposição corporal. Podes perder gordura e ganhar músculo ao mesmo tempo e a balança mal se mexe. Envia estes dados periodicamente para acompanhar a evolução real.</div>
-
   <div class="sl">Frequência de check-in</div>
   <div class="freq-grid">
     <div class="fc"><div class="fc-v">Semanal</div><div class="fc-l">Peso</div><div class="fc-s">mesma manhã, mesmas condições</div></div>
     <div class="fc"><div class="fc-v">2 semanas</div><div class="fc-l">Medidas + lifts</div><div class="fc-s">fita métrica + pesos do treino</div></div>
     <div class="fc"><div class="fc-v">4 semanas</div><div class="fc-l">Foto + análise</div><div class="fc-s">mesma luz, mesmo horário</div></div>
   </div>
-
   <div class="sl">O que medir e enviar</div>
   <div class="ci-block">
     <div class="ci-block-hdr">Peso — toda semana</div>
@@ -484,7 +458,6 @@
     <div class="ci-block-hdr">Foto — a cada 4 semanas</div>
     <div class="ci-block-body">Foto de frente e de lado. <b>Mesma iluminação, mesmo horário, mesma roupa</b>. O espelho mente — fotos ao longo do tempo não mentem. Numa recomposição moderada a foto muda claramente mesmo quando a balança mal se mexe.</div>
   </div>
-
   <div class="sl">Template de check-in para enviar ao Claude</div>
   <div class="ci-template">
 Check-in — Semana [X]<br><br>
@@ -510,14 +483,13 @@ Dúvidas: ___
   <div class="alert as">Como usar: começa uma nova conversa no mesmo projeto Claude, cola o template preenchido e envia. Usa esta conversa como referência do plano — não para os check-ins.</div>
   <div class="alert aw">Não uses só a balança para decidir se o plano está a funcionar. Se o peso estabilizar mas as medidas melhorarem e os lifts subirem, a recomposição está a acontecer — é exatamente isso que queres.</div>
 </div>
-
 <script>
 const days={
   seg:{label:'Segunda-feira — Superior A · força',type:'u',dur:'65–70 min',rows:[
     {ex:'Aquecimento',note:'Cardio leve + rotações de ombro',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
     {ex:'Supino halteres',note:'Amplitude total, cotovelos abaixo do peito',s:'3',r:'6–8',w:'47,5 lb/halter',eq:'halteres',t:'k',rest:'90 seg–2 min'},
-    {ex:'Barra fixa',note:'Dead hang até queixo — qualquer nº de reps conta',s:'3',r:'máx',w:'peso corporal',eq:'BW',t:'n',rest:'2 min'},
-    {ex:'Pulldown (lat pulldown)',note:'Complemento após barra fixa',s:'2',r:'10–12',w:'115 lb',eq:'cabo',t:'k',rest:'60 seg'},
+    {ex:'Pulldown (lat pulldown)',note:'Puxada vertical principal',s:'3',r:'6–8',w:'115 lb',eq:'cabo',t:'k',rest:'90 seg'},
+    {ex:'Face pull',note:'Altura dos olhos, rotação externa — igual à quinta',s:'2',r:'15–20',w:'leve',eq:'cabo',t:'k',rest:'60 seg'},
     {ex:'Desenvolvimento',note:'Halteres, descida controlada',s:'3',r:'6–8',w:'45 lb/halter',eq:'halteres',t:'k',rest:'90 seg–2 min'},
     {ex:'Remada curvada',note:'Pegada pronada hoje · 2–3 min descanso',s:'3',r:'6–8',w:'35 lb/lado + barra',eq:'barra',t:'k',rest:'2–3 min'},
     {ex:'Paralelas',note:'Tronco vertical = foco no tríceps',s:'3',r:'8–10',w:'peso corporal',eq:'BW',t:'n',rest:'90 seg'},
@@ -579,7 +551,6 @@ const days={
 };
 const cm={u:'#185FA5',l:'#3B6D11',c:'#854F0B',r:'#888780'};
 const bm={u:'#E6F1FB',l:'#EAF3DE',c:'#FAEEDA',r:'#F1EFE8'};
-
 function renderDay(day){
   const d=days[day],col=cm[d.type],bg=bm[d.type];
   const rows=d.rows.map((r,i)=>{
@@ -591,20 +562,17 @@ function renderDay(day){
   }).join('');
   document.getElementById('session-display').innerHTML=`<div class="sc"><div class="sc-hdr"><span class="sc-title">${d.label}</span><span class="sc-badge" style="background:${bg};color:${col}">${d.dur}</span></div><div style="overflow-x:auto"><table><thead><tr><th style="width:27%">Exercício</th><th style="width:27%">Nota</th><th style="width:7%;text-align:center">Séries</th><th style="width:12%;text-align:center">Reps</th><th style="width:14%;text-align:right">Peso</th><th style="width:13%;text-align:right">Descanso</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
 }
-
 function selDay(day,el){
   document.querySelectorAll('.db').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
   renderDay(day);
 }
-
 function showPage(id,btn){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tnb').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   if(btn)btn.classList.add('active');
 }
-
 renderDay('seg');
 </script>
 </body>
