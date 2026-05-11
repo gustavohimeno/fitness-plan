@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Plano de Fitness</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f6f3;--surface:#fff;--surface2:#f0efe9;
+    --border:rgba(0,0,0,0.09);--border2:rgba(0,0,0,0.16);
+    --text:#1a1a18;--text2:#5a5a54;--text3:#9a9a90;
+    --blue:#185FA5;--blue-bg:#E6F1FB;
+    --green:#3B6D11;--green-bg:#EAF3DE;
+    --amber:#854F0B;--amber-bg:#FAEEDA;
+    --red:#993C1D;--red-bg:#FAECE7;
+    --pink:#72243E;--pink-bg:#FBEAF0;
+    --r:12px;--rsm:8px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.5;min-height:100vh;}
+  .hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 18px 0;position:sticky;top:0;z-index:100;}
+  .hdr-title{font-size:12px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;}
+  .top-nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;}
+  .top-nav::-webkit-scrollbar{display:none;}
+  .tnb{flex-shrink:0;padding:8px 13px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;border:none;background:transparent;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;white-space:nowrap;}
+  .tnb.active{color:var(--text);border-bottom-color:var(--text);}
+  .page{display:none;padding:18px 16px 48px;max-width:700px;margin:0 auto;}
+  .page.active{display:block;}
+  .sl{font-size:10px;font-weight:600;letter-spacing:0.09em;text-transform:uppercase;color:var(--text3);margin-bottom:9px;margin-top:22px;}
+  .sl:first-child{margin-top:2px;}
+  .pills4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:4px;}
+  .pill{background:var(--surface);border:1px solid var(--border);border-radius:var(--rsm);padding:11px 8px;text-align:center;}
+  .pill-v{font-size:19px;font-weight:600;color:var(--text);}
+  .pill-l{font-size:10px;color:var(--text3);margin-top:2px;}
+  .wk-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin-bottom:12px;}
+  .db{background:var(--surface);border:1px solid var(--border);border-radius:var(--rsm);padding:9px 3px;text-align:center;cursor:pointer;transition:all 0.15s;}
+  .db.active{border-color:var(--text);border-width:1.5px;}
+  .db.rbg{background:var(--surface2);}
+  .dn{font-size:9px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px;}
+  .dtag{display:inline-block;font-size:8px;font-weight:600;padding:2px 4px;border-radius:3px;}
+  .tu{background:var(--blue-bg);color:#0C447C;}
+  .tl{background:var(--green-bg);color:#27500A;}
+  .tc{background:var(--amber-bg);color:#633806;}
+  .tr2{background:var(--surface2);color:var(--text3);}
+  .sc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px;}
+  .sc-hdr{padding:11px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+  .sc-title{font-size:13px;font-weight:600;color:var(--text);}
+  .sc-badge{font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;white-space:nowrap;}
+  table{width:100%;border-collapse:collapse;font-size:11.5px;table-layout:fixed;}
+  th{padding:7px 10px;text-align:left;font-size:9px;font-weight:600;color:var(--text3);background:var(--surface2);letter-spacing:0.05em;text-transform:uppercase;}
+  td{padding:8px 10px;border-top:1px solid var(--border);color:var(--text);vertical-align:middle;}
+  tr.alt td{background:#fafaf8;}
+  .en{font-weight:500;}
+  .etag{display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;margin-left:3px;}
+  .en-new{background:var(--red-bg);color:var(--red);}
+  .en-keep{background:var(--green-bg);color:var(--green);}
+  .epill{display:inline-block;font-size:9px;padding:1px 5px;border-radius:3px;background:var(--surface2);color:var(--text3);border:1px solid var(--border);margin-left:3px;}
+  .rbadge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:3px;background:var(--amber-bg);color:var(--amber);}
+  .alert{padding:11px 14px;border-radius:var(--rsm);font-size:12px;line-height:1.6;margin-bottom:8px;}
+  .ai{background:var(--blue-bg);color:var(--blue);}
+  .as{background:var(--green-bg);color:var(--green);}
+  .aw{background:var(--amber-bg);color:var(--amber);}
+  .macro3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px;}
+  .mc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:13px;}
+  .mc-n{font-size:11px;color:var(--text3);margin-bottom:3px;}
+  .mc-v{font-size:21px;font-weight:600;}
+  .mc-s{font-size:10px;color:var(--text3);margin-top:1px;}
+  .mc-bar{height:3px;border-radius:2px;margin-top:8px;background:var(--border);}
+  .mc-fill{height:100%;border-radius:2px;}
+  .tl-wrap{position:relative;padding-left:24px;}
+  .tl-wrap::before{content:'';position:absolute;left:5px;top:10px;bottom:10px;width:1px;background:var(--border2);}
+  .tl-row{position:relative;margin-bottom:10px;}
+  .tl-dot{position:absolute;left:-24px;top:13px;width:9px;height:9px;border-radius:50%;border:1px solid var(--border2);background:var(--surface);}
+  .tl-dot.key{background:var(--text);border-color:var(--text);}
+  .tl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;}
+  .tl-card.key{border-color:var(--border2);}
+  .tl-hdr{display:flex;align-items:baseline;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+  .tl-time{font-size:10px;font-weight:600;color:var(--text3);font-family:'DM Mono',monospace;min-width:42px;}
+  .tl-name{font-size:13px;font-weight:600;color:var(--text);flex:1;}
+  .tl-kcal{font-size:11px;color:var(--text3);white-space:nowrap;}
+  .tl-body{font-size:12px;color:var(--text2);line-height:1.75;}
+  .tl-note{font-size:11px;color:var(--text3);margin-top:4px;font-style:italic;}
+  .tl-link{font-size:11px;color:var(--blue);cursor:pointer;margin-top:5px;display:inline-block;}
+  .swap2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;}
+  .scard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px;}
+  .scard-t{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px;}
+  .scard-b{font-size:11px;color:var(--text2);line-height:1.6;}
+  .scard-k{font-size:10px;color:var(--text3);margin-top:4px;font-family:'DM Mono',monospace;}
+  .lcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px;}
+  .lrow{display:flex;align-items:center;gap:8px;padding:10px 14px;border-top:1px solid var(--border);font-size:12px;}
+  .lrow:first-child{border-top:none;}
+  .lrow.alt{background:var(--surface2);}
+  .lrow-n{flex:1;color:var(--text);}
+  .lrow-v{font-size:12px;font-weight:500;color:var(--text);text-align:right;white-space:nowrap;}
+  .lrow-j{font-size:10px;color:var(--text3);text-align:right;white-space:nowrap;min-width:90px;}
+  .ol2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px;}
+  .olc{border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;}
+  .olc-t{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px;}
+  .olc-b{font-size:11px;color:var(--text2);line-height:1.6;}
+  .olc-j{font-size:14px;font-weight:600;color:var(--text);margin-top:6px;}
+  .stcard{border:1px solid var(--border);border-radius:var(--r);padding:13px 14px;margin-bottom:8px;}
+  .stcard-t{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px;}
+  .stcard-b{font-size:12px;color:var(--text2);line-height:1.75;}
+  .ci-block{border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:10px;}
+  .ci-block-hdr{padding:11px 14px;background:var(--surface2);border-bottom:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text);}
+  .ci-block-body{padding:12px 14px;font-size:12px;color:var(--text2);line-height:1.8;}
+  .ci-block-body b{color:var(--text);font-weight:600;}
+  .ci-template{background:var(--surface2);border-radius:var(--rsm);padding:13px 14px;font-size:12px;color:var(--text2);line-height:1.9;font-family:'DM Mono',monospace;margin-bottom:8px;}
+  .freq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;}
+  .fc{border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;}
+  .fc-v{font-size:18px;font-weight:600;color:var(--text);margin-bottom:3px;}
+  .fc-l{font-size:11px;color:var(--text3);}
+  .fc-s{font-size:10px;color:var(--text3);margin-top:2px;}
+  .treat-list{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+  .trow{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-top:1px solid var(--border);font-size:12px;gap:8px;}
+  .trow:first-child{border-top:none;}
+  .trow.alt{background:var(--surface2);}
+  .trow-info{flex:1;}
+  .trow-n{color:var(--text);}
+  .trow-s{font-size:10px;color:var(--text3);}
+  .trow-k{font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);white-space:nowrap;}
+  .htag{display:inline-block;font-size:9px;font-weight:600;padding:2px 6px;border-radius:3px;background:var(--pink-bg);color:var(--pink);margin-left:5px;vertical-align:middle;}
+  .steps-banner{background:var(--surface2);border-radius:var(--rsm);padding:12px 16px;display:flex;align-items:center;gap:14px;margin-bottom:10px;}
+  .steps-n{font-size:24px;font-weight:600;color:var(--text);}
+  .steps-t{font-size:12px;color:var(--text2);line-height:1.5;}
+  .proto-box{background:var(--surface2);border-radius:var(--rsm);padding:12px 14px;margin-bottom:8px;font-size:12px;color:var(--text2);line-height:1.8;}
+  .proto-box b{color:var(--text);font-weight:600;}
+  .proto-total{font-size:13px;font-weight:600;color:var(--text);margin-top:6px;padding-top:6px;border-top:1px solid var(--border);}
+  @media(max-width:420px){
+    .pills4{grid-template-columns:repeat(2,1fr);}
+    .swap2{grid-template-columns:1fr;}
+    .ol2{grid-template-columns:1fr;}
+    th:nth-child(2),td:nth-child(2){display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="hdr-title">Meu Plano de Fitness</div>
+  <div class="top-nav">
+    <button class="tnb active" onclick="showPage('treino',this)">Treino</button>
+    <button class="tnb" onclick="showPage('dieta-treino',this)">Dieta — treino</button>
+    <button class="tnb" onclick="showPage('dieta-descanso',this)">Dieta — descanso</button>
+    <button class="tnb" onclick="showPage('refeicoes',this)">Opções refeições</button>
+    <button class="tnb" onclick="showPage('progressao',this)">Progressão</button>
+    <button class="tnb" onclick="showPage('alongamento',this)">Alongamento</button>
+    <button class="tnb" onclick="showPage('flexivel',this)">Dias flexíveis</button>
+    <button class="tnb" onclick="showPage('checkin',this)">Check-in Claude</button>
+  </div>
+</div>
+<!-- ===== TREINO ===== -->
+<div id="treino" class="page active">
+  <div class="pills4">
+    <div class="pill"><div class="pill-v">165 lb</div><div class="pill-l">peso atual</div></div>
+    <div class="pill"><div class="pill-v">5–6</div><div class="pill-l">sessões/semana</div></div>
+    <div class="pill"><div class="pill-v">165 g</div><div class="pill-l">proteína/dia treino</div></div>
+    <div class="pill"><div class="pill-v">10.000</div><div class="pill-l">passos/dia</div></div>
+  </div>
+  <div class="sl">Semana — toca num dia</div>
+  <div class="wk-grid">
+    <div class="db active" onclick="selDay('seg',this)"><div class="dn">Seg</div><span class="dtag tu">Superior A</span></div>
+    <div class="db" onclick="selDay('ter',this)"><div class="dn">Ter</div><span class="dtag tl">Inferior A</span></div>
+    <div class="db rbg" onclick="selDay('qua',this)"><div class="dn">Qua</div><span class="dtag tc">Cardio</span></div>
+    <div class="db" onclick="selDay('qui',this)"><div class="dn">Qui</div><span class="dtag tu">Superior B</span></div>
+    <div class="db" onclick="selDay('sex',this)"><div class="dn">Sex</div><span class="dtag tl">Inferior B</span></div>
+    <div class="db rbg" onclick="selDay('sab',this)"><div class="dn">Sáb</div><span class="dtag tc">Cardio</span></div>
+    <div class="db rbg" onclick="selDay('dom',this)"><div class="dn">Dom</div><span class="dtag tr2">Descanso</span></div>
+  </div>
+  <div class="sl">Detalhes da sessão</div>
+  <div id="session-display"></div>
+  <div class="sl">Tempos de descanso entre séries</div>
+  <div class="lcard">
+    <div class="lrow"><span class="lrow-n">Compostos com barra (agachamento, terra, remada, press)</span><span class="lrow-v">2–3 min</span></div>
+    <div class="lrow alt"><span class="lrow-n">Compostos com halteres (supino, desenvolvimento, afundos)</span><span class="lrow-v">90 seg – 2 min</span></div>
+    <div class="lrow"><span class="lrow-n">Isolados (rosca, tríceps, elevação lateral, panturrilha)</span><span class="lrow-v">60 seg</span></div>
+    <div class="lrow alt"><span class="lrow-n">Abdominais e woodchopper</span><span class="lrow-v">30–45 seg</span></div>
+  </div>
+  <div class="sl">Passos diários</div>
+  <div class="steps-banner">
+    <div class="steps-n">10.000</div>
+    <div class="steps-t">passos <strong>todos os dias</strong><br>Dias de ginásio: requer intenção — estaciona longe, escadas, passeio com o cão<br>Dias de cardio: corrida já traz ~5.000–6.000 passos — o resto vem naturalmente<br>Domingo: caminhada leve cobre o resto</div>
+  </div>
+</div>
+<!-- ===== DIETA — TREINO ===== -->
+<div id="dieta-treino" class="page">
+  <div class="sl">Macros — dia de treino</div>
+  <div class="macro3">
+    <div class="mc"><div class="mc-n">Proteína</div><div class="mc-v" style="color:var(--blue)">~165 g</div><div class="mc-s">660 kcal · 31%</div><div class="mc-bar"><div class="mc-fill" style="width:31%;background:var(--blue)"></div></div></div>
+    <div class="mc"><div class="mc-n">Carboidratos</div><div class="mc-v" style="color:var(--green)">175 g</div><div class="mc-s">700 kcal · 37%</div><div class="mc-bar"><div class="mc-fill" style="width:37%;background:var(--green)"></div></div></div>
+    <div class="mc"><div class="mc-n">Gorduras</div><div class="mc-v" style="color:var(--amber)">65 g</div><div class="mc-s">585 kcal · 31%</div><div class="mc-bar"><div class="mc-fill" style="width:31%;background:var(--amber)"></div></div></div>
+  </div>
+  <div class="sl">Proteína detalhada — dia de treino</div>
+  <div class="proto-box">
+    3–4 ovos no café da manhã · <b>~25 g</b><br>
+    30 g whey isolado pós-treino · <b>~25 g</b><br>
+    200 g frango no almoço · <b>~46 g</b><br>
+    Skyr 200 g no lanche · <b>~17 g</b><br>
+    250 ml leite + 25 g whey à noite · <b>~30 g</b>
+    <div class="proto-total">Total: ~143–163 g ✓</div>
+  </div>
+  <div class="sl">Linha do tempo</div>
+  <div class="tl-wrap">
+    <div class="tl-row"><div class="tl-dot key"></div><div class="tl-card key">
+      <div class="tl-hdr"><span class="tl-time">06:00</span><span class="tl-name">Pré-treino</span><span class="tl-kcal">~100 kcal</span></div>
+      <div class="tl-body">1 banana — come enquanto te preparas</div>
+      <div class="tl-note">Impede a degradação muscular durante o treino em jejum. Obrigatório mesmo sem fome.</div>
+    </div></div>
+    <div class="tl-row"><div class="tl-dot"></div><div class="tl-card">
+      <div class="tl-hdr"><span class="tl-time">06:45</span><span class="tl-name">Sessão de ginásio</span><span class="tl-kcal">~400–500 kcal gastas</span></div>
+      <div class="tl-body">Garrafa de água — bebe ao longo da sessão</div>
+    </div></div>
+    <div class="tl-row"><div class="tl-dot key"></div><div class="tl-card key">
+      <div class="tl-hdr"><span class="tl-time">~09:00</span><span class="tl-name">Café da manhã pós-treino</span><span class="tl-kcal">~450 kcal</span></div>
+      <div class="tl-body">30 g de whey isolado em água · 3–4 ovos inteiros mexidos ou cozidos · café preto ou chá</div>
+      <div class="tl-note">Dentro de 45 min após terminar. Whey isolado — não concentrado.</div>
+    </div></div>
+    <div class="tl-row"><div class="tl-dot key"></div><div class="tl-card key">
+      <div class="tl-hdr"><span class="tl-time">13:00</span><span class="tl-name">Almoço — refeição principal</span><span class="tl-kcal">~580 kcal</span></div>
+      <div class="tl-body">200 g de frango grelhado · 200 g de batata cozida ou assada · couve ou salada · suco de limão ou vinagre · molho de tomate cereja + coentro + salsa ou tzatziki (2–3 col. sopa)</div>
+      <div class="tl-note">Couve: massageie com limão 30 seg ou cozinhe no vapor 2 min.</div>
+    </div></div>
+    <div class="tl-row"><div class="tl-dot"></div><div class="tl-card">
+      <div class="tl-hdr"><span class="tl-time">16:30</span><span class="tl-name">Lanche da tarde</span><span class="tl-kcal">~270 kcal</span></div>
+      <div class="tl-body">Skyr 200 g (0% gordura) · 100–150 g de mirtilo · 25 g de mix de castanhas ou 3–4 frutty</div>
+      <div class="tl-note">Frutty substitui as castanhas perfeitamente. Ou experimenta a panqueca proteica — ver aba Opções.</div>
+    </div></div>
+    <div class="tl-row"><div class="tl-dot key"></div><div class="tl-card key">
+      <div class="tl-hdr"><span class="tl-time">20:00</span><span class="tl-name">Refeição leve noturna</span><span class="tl-kcal">~280 kcal</span></div>
+      <div class="tl-body">250 ml de leite semidesnatado + 25 g de whey isolado · couve ou legumes cozidos no vapor</div>
+      <div class="tl-note">Caseína do leite alimenta os músculos durante a noite. Se causar fezes moles, troca o leite por água ou experimenta 4 ovos cozidos.</div>
+      <span class="tl-link" onclick="showPage('refeicoes',document.querySelectorAll('.tnb')[3])">Ver alternativas noturnas em Opções →</span>
+    </div></div>
+  </div>
+</div>
+<!-- ===== DIETA — DESCANSO ===== -->
+<div id="dieta-descanso" class="page">
+  <div class="sl">Macros — dia de descanso / cardio</div>
+  <div class="macro3">
+    <div class="mc"><div class="mc-n">Calorias</div><div class="mc-v" style="color:var(--text)">1.700</div><div class="mc-s">déficit maior</div></div>
+    <div class="mc"><div class="mc-n">Proteína</div><div class="mc-v" style="color:var(--blue)">~150 g</div><div class="mc-s">acima do mínimo</div></div>
+    <div class="mc"><div class="mc-n">Carboidratos</div><div class="mc-v" style="color:var(--green)">130 g</div><div class="mc-s">porções menores</div></div>
+  </div>
+  <div class="sl">Proteína detalhada — dia de descanso</div>
+  <div class="proto-box">
+    3 ovos + 30 g whey no café da manhã · <b>~44 g</b><br>
+    200 g frango + 1 ovo extra no almoço · <b>~52 g</b><br>
+    Skyr 200 g no lanche · <b>~17 g</b><br>
+    250 ml leite + 25 g whey à noite · <b>~30 g</b>
+    <div class="proto-total">Total: ~143–150 g ✓ — acima do limiar de proteção muscular</div>
+  </div>
+  <div class="alert ai">Nos dias de descanso a meta é ~150 g — ligeiramente abaixo dos 165 g dos dias de treino, mas bem acima do mínimo de 140 g para proteger o músculo. Sem o shake pós-treino, é o equilíbrio certo.</div>
+  <div class="sl">Linha do tempo</div>
+  <div class="tl-wrap">
+    <div class="tl-row"><div class="tl-dot key"></div><div class="tl-card key">
+      <div class="tl-hdr"><span class="tl-time">07:30</span><span class="tl-name">Café da manhã — tua escolha</span><span class="tl-kcal">~380–430 kcal</span></div>
+      <div class="tl-body">
+        3 ovos + 30 g whey isolado em água + opção de carboidrato:<br>
+        — Opção A: + 80 g de aveia com água · mais saciante<br>
+        — Opção B: + 1 banana · mais leve se não estiver com muita fome
+      </div>
+      <div class="tl-note">O whey no café da manhã compensa o shake pós-treino que não existe hoje. Vai pela fome para escolher entre aveia e banana.</div>
+    </div></div>
+    <div class="tl-row"><div class="tl-dot key"></div><div class="tl-card key">
+      <div class="tl-hdr"><span class="tl-time">13:00</span><span class="tl-name">Almoço</span><span class="tl-kcal">~530 kcal</span></div>
+      <div class="tl-body">200 g de frango · 1 ovo cozido ou mexido extra · 150 g de batata cozida (menor que no dia de treino) · couve ou salada · suco de limão · molho ou tzatziki se quiser</div>
+      <div class="tl-note">O ovo extra compensa parte da proteína do shake pós-treino — simples e natural.</div>
+    </div></div>
+    <div class="tl-row"><div class="tl-dot"></div><div class="tl-card">
+      <div class="tl-hdr"><span class="tl-time">16:30</span><span class="tl-name">Lanche</span><span class="tl-kcal">~200 kcal</span></div>
+      <div class="tl-body">Skyr 200 g (0% gordura) · 100 g de mirtilo · sem castanhas hoje — ou troca por 3–4 frutty se quiseres um mimo</div>
+    </div></div>
+    <div class="tl-row"><div class="tl-dot key"></div><div class="tl-card key">
+      <div class="tl-hdr"><span class="tl-time">20:00</span><span class="tl-name">Refeição leve noturna</span><span class="tl-kcal">~280 kcal</span></div>
+      <div class="tl-body">250 ml de leite semidesnatado + 25 g de whey isolado · couve ou legumes cozidos no vapor</div>
+      <div class="tl-note">Ainda mais leve que nos dias de treino — sem carboidratos à noite.</div>
+      <span class="tl-link" onclick="showPage('refeicoes',document.querySelectorAll('.tnb')[3])">Ver alternativas noturnas em Opções →</span>
+    </div></div>
+  </div>
+  <div style="margin-top:12px">
+    <div class="alert ai">Nos dias de cardio (Qua/Sáb) a corrida gasta ~350 kcal extra. Não desças abaixo de 1.700 kcal totais.</div>
+  </div>
+</div>
+<!-- ===== OPÇÕES REFEIÇÕES ===== -->
+<div id="refeicoes" class="page">
+  <div class="sl">Todas as opções confirmadas</div>
+  <div class="swap2">
+    <div class="scard"><div class="scard-t">Pré-treino (06:00)</div><div class="scard-b">1 banana — só dias de treino. Dias de descanso: café da manhã normal às 07:30.</div><div class="scard-k">~100 kcal</div></div>
+    <div class="scard"><div class="scard-t">Shake whey isolado</div><div class="scard-b">Dias de treino: 30 g em água pós-treino. Dias de descanso: 30 g em água no café da manhã. Todos os dias.</div><div class="scard-k">~110 kcal · ~25 g proteína</div></div>
+    <div class="scard"><div class="scard-t">Carboidrato do café da manhã</div><div class="scard-b">Treino: banana às 6h. Descanso: aveia (mais saciante) ou banana (mais leve) — vai pela fome.</div><div class="scard-k">100–300 kcal</div></div>
+    <div class="scard"><div class="scard-t">Ovo extra no almoço</div><div class="scard-b">Só nos dias de descanso — compensa parte da proteína do shake pós-treino. Cozido ou mexido ao lado do frango.</div><div class="scard-k">~70 kcal · ~6 g proteína</div></div>
+    <div class="scard"><div class="scard-t">Verdura do almoço</div><div class="scard-b">Couve (preferida — mais nutrientes) ou salada. Massageie a couve com limão 30 seg ou cozinhe no vapor 2 min.</div><div class="scard-k">~30–50 kcal</div></div>
+    <div class="scard"><div class="scard-t">Molho do almoço</div><div class="scard-b">Tomate cereja + coentro + salsa batidos, ou tzatziki (2–3 col. sopa). Ambos ok — tzatziki adiciona proteína extra.</div><div class="scard-k">~10–60 kcal</div></div>
+    <div class="scard"><div class="scard-t">Lanche A</div><div class="scard-b">Skyr 200 g (0%) + 100–150 g mirtilo + 25 g castanhas OU 3–4 frutty no lugar das castanhas.</div><div class="scard-k">~270 kcal · ~20 g proteína</div></div>
+    <div class="scard"><div class="scard-t">Lanche B — panqueca proteica</div><div class="scard-b">1 ovo inteiro + ½ banana amassada + 25 g whey isolado. Frigideira antiaderente sem óleo. Pitada de canela opcional.</div><div class="scard-k">~260 kcal · ~30 g proteína</div></div>
+    <div class="scard"><div class="scard-t">Noite — padrão</div><div class="scard-b">250 ml leite semidesnatado + 25 g whey isolado. Se causar fezes moles, troca leite por água primeiro.</div><div class="scard-k">~280 kcal · ~30 g proteína</div></div>
+    <div class="scard"><div class="scard-t">Noite — alternativa A</div><div class="scard-b">4 ovos cozidos + legumes no vapor. Cozinha 6–8 no domingo, guarda com casca na geladeira a semana toda.</div><div class="scard-k">~280 kcal · ~25 g proteína</div></div>
+    <div class="scard"><div class="scard-t">Noite — alternativa B</div><div class="scard-b">150 g de frango (tempero diferente do almoço: páprica + alho + ervas) + salada ou legumes.</div><div class="scard-k">~220 kcal · ~31 g proteína</div></div>
+  </div>
+  <div class="sl">Rotação noturna sugerida</div>
+  <div class="lcard">
+    <div class="lrow"><span class="lrow-n">Segunda</span><span class="lrow-v">Leite + whey isolado · legumes</span></div>
+    <div class="lrow alt"><span class="lrow-n">Terça</span><span class="lrow-v">4 ovos cozidos · salada</span></div>
+    <div class="lrow"><span class="lrow-n">Quarta</span><span class="lrow-v">Leite + whey isolado · couve</span></div>
+    <div class="lrow alt"><span class="lrow-n">Quinta</span><span class="lrow-v">Frango (páprica/alho) · salada</span></div>
+    <div class="lrow"><span class="lrow-n">Sexta</span><span class="lrow-v">4 ovos cozidos · legumes no vapor</span></div>
+    <div class="lrow alt"><span class="lrow-n">Sábado</span><span class="lrow-v">Leite + whey isolado · couve ou salada</span></div>
+    <div class="lrow"><span class="lrow-n">Domingo</span><span class="lrow-v">Flexível — salmão ou carne magra liberados</span></div>
+  </div>
+  <div style="margin-top:10px">
+    <div class="alert aw">Se as fezes moles persistirem após trocar para whey isolado, substitui o leite por água no shake noturno por uma semana. Se melhorar, a lactose é a causa.</div>
+    <div class="alert as">Preparo dominical: cozinha 4–5 frangos + 6–8 ovos. Dura a semana toda — zero esforço nas noites de semana.</div>
+  </div>
+</div>
+<!-- ===== PROGRESSÃO ===== -->
+<div id="progressao" class="page">
+  <div class="alert ai">Não adicionas peso toda semana de forma automática. Adicionas quando <strong>mereces</strong> — quando completas todas as séries no topo da faixa de reps com boa forma, duas sessões seguidas.</div>
+  <div class="sl">Quanto adicionar por tipo de exercício</div>
+  <div class="ol2">
+    <div class="olc"><div class="olc-t">Compostos com barra</div><div class="olc-b">Agachamento, levantamento terra, remada curvada</div><div class="olc-j">+5 lb por salto</div></div>
+    <div class="olc"><div class="olc-t">Compostos com halteres</div><div class="olc-b">Supino, desenvolvimento, afundos, supino inclinado</div><div class="olc-j">+2,5 lb por halter</div></div>
+    <div class="olc"><div class="olc-t">Cabo e máquinas</div><div class="olc-b">Leg press, pulldown, remada cabo, extensão, flexão, woodchopper</div><div class="olc-j">+5 lb por salto</div></div>
+    <div class="olc"><div class="olc-t">Isolados com halteres</div><div class="olc-b">Rosca bíceps, elevação lateral, extensão tríceps com halteres</div><div class="olc-j">+2,5 lb por halter</div></div>
+  </div>
+  <div class="sl">Baseline atual e meta em 8 semanas</div>
+  <div class="lcard">
+    <div class="lrow"><span class="lrow-n">Supino halteres <span style="font-size:10px;color:var(--text3)">halteres</span></span><span class="lrow-v">47,5 lb/halter</span><span class="lrow-j">→ 57,5 lb/halter</span></div>
+    <div class="lrow alt"><span class="lrow-n">Agachamento <span style="font-size:10px;color:var(--text3)">barra</span></span><span class="lrow-v">55 lb/lado (~155 lb)</span><span class="lrow-j">→ 75 lb/lado</span></div>
+    <div class="lrow"><span class="lrow-n">Levantamento terra <span style="font-size:10px;color:var(--text3)">barra</span></span><span class="lrow-v">45 lb/lado (~135 lb)</span><span class="lrow-j">→ 65 lb/lado</span></div>
+    <div class="lrow alt"><span class="lrow-n">Desenvolvimento <span style="font-size:10px;color:var(--text3)">halteres</span></span><span class="lrow-v">45 lb/halter</span><span class="lrow-j">→ 52,5 lb/halter</span></div>
+    <div class="lrow"><span class="lrow-n">Remada curvada <span style="font-size:10px;color:var(--text3)">barra</span></span><span class="lrow-v">35 lb/lado (~115 lb)</span><span class="lrow-j">→ 45 lb/lado</span></div>
+    <div class="lrow alt"><span class="lrow-n">Pulldown (lat pulldown) <span style="font-size:10px;color:var(--text3)">cabo</span></span><span class="lrow-v">115 lb</span><span class="lrow-j">→ 130 lb</span></div>
+    <div class="lrow"><span class="lrow-n">Barra fixa <span style="font-size:10px;color:var(--text3)">peso corporal</span></span><span class="lrow-v">máx reps (reinício)</span><span class="lrow-j">→ 8 reps/série</span></div>
+    <div class="lrow alt"><span class="lrow-n">Leg press <span style="font-size:10px;color:var(--text3)">sled</span></span><span class="lrow-v">115 lb/lado (~305 lb)</span><span class="lrow-j">→ 145 lb/lado</span></div>
+    <div class="lrow"><span class="lrow-n">Corrida 5 km</span><span class="lrow-v">~40 min (Zona 2)</span><span class="lrow-j">→ 35 min</span></div>
+  </div>
+  <div style="margin-top:10px">
+    <div class="alert aw">Progresso semana a semana: não há tabela fixa. Pode acontecer a cada 1–2 semanas nos isolados, ou demorar 3–4 semanas nos compostos pesados. Os dois são normais.</div>
+    <div class="alert as">Meta das 8 semanas: criar o hábito de progredir consistentemente. Quem adiciona 5 lb a cada 2–3 semanas nos compostos está a fazer exatamente o que deve.</div>
+  </div>
+</div>
+<!-- ===== ALONGAMENTO ===== -->
+<div id="alongamento" class="page">
+  <div class="alert ai">Alongamento estático no fim de cada sessão é obrigatório — 5 minutos, focado nos músculos trabalhados naquele dia. Reduz dores, melhora recuperação e previne lesões.</div>
+  <div class="sl">Fim de cada sessão — 5 minutos</div>
+  <div class="stcard">
+    <div class="stcard-t">Dias de superior (Seg / Qui)</div>
+    <div class="stcard-b">
+      Peito: doorway stretch com braços abertos · 30 seg<br>
+      Ombros: cross-body shoulder stretch cada lado · 30 seg<br>
+      Tríceps: overhead tricep stretch cada lado · 30 seg<br>
+      Latíssimo / costas: overhead side stretch cada lado · 30 seg<br>
+      Pescoço: inclinações laterais suaves · 30 seg
+    </div>
+  </div>
+  <div class="stcard">
+    <div class="stcard-t">Dias de inferior (Ter / Sex)</div>
+    <div class="stcard-b">
+      Quadríceps: standing quad stretch cada perna · 30 seg<br>
+      Isquiotibiais: forward fold ou seated hamstring stretch · 45 seg<br>
+      Flexores da anca: hip flexor lunge stretch cada lado · 45 seg<br>
+      Gêmeos: wall calf stretch cada lado · 30 seg<br>
+      Glúteos: figure-4 stretch cada lado · 30 seg
+    </div>
+  </div>
+  <div class="stcard">
+    <div class="stcard-t">Dias de cardio (Qua / Sáb) — pós-corrida</div>
+    <div class="stcard-b">
+      Gêmeos: wall calf stretch · 30 seg cada<br>
+      Isquiotibiais: standing toe touch · 45 seg<br>
+      Flexores da anca: hip flexor lunge · 30 seg cada<br>
+      Quadríceps: standing quad stretch · 30 seg cada
+    </div>
+  </div>
+  <div class="sl">Domingo — mobilidade (15–20 min)</div>
+  <div class="stcard">
+    <div class="stcard-t">Sessão semanal de mobilidade</div>
+    <div class="stcard-b">
+      Coluna torácica: foam roller ou rotações em 4 apoios · 2 min<br>
+      Flexores da anca: 90/90 hip stretch cada lado · 90 seg<br>
+      Anca: pigeon pose ou figure-4 cada lado · 60 seg<br>
+      Isquiotibiais: seated forward fold · 60 seg<br>
+      Ombros: wall slides + arm circles · 2 min<br>
+      Respiração / relaxamento: posição fetal · 2 min
+    </div>
+  </div>
+  <div class="sl">Pilates</div>
+  <div class="alert as">Vale muito a pena — 1x por semana complementa bem o treino de força. Melhora estabilidade do core, mobilidade da anca e postura. Pode substituir a mobilidade do domingo ou ser feito num dia à parte.</div>
+  <div class="alert aw">Se fizeres Pilates, faz num dia de descanso ou após a sessão de ginásio — nunca antes, para não chegar ao ginásio fatigado no core.</div>
+</div>
+<!-- ===== DIAS FLEXÍVEIS ===== -->
+<div id="flexivel" class="page">
+  <div class="sl">Refeições fora e mimos</div>
+  <div class="lcard">
+    <div class="lrow"><div style="flex:1"><div style="font-weight:600;font-size:13px;margin-bottom:3px">Uma refeição fora por semana — aproveita</div><div style="font-size:12px;color:var(--text2)">O teu déficit semanal absorve uma refeição normal de restaurante. Volta ao plano no dia seguinte — sem compensação.</div></div></div>
+    <div class="lrow alt"><div style="flex:1"><div style="font-weight:600;font-size:13px;margin-bottom:3px">Queres margem? Retira a batata do almoço nesse dia</div><div style="font-size:12px;color:var(--text2)">Retirar a batata poupa ~200 kcal. Frango + couve no almoço, e depois curte o jantar à vontade.</div></div></div>
+    <div class="lrow"><div style="flex:1"><div style="font-weight:600;font-size:13px;margin-bottom:3px">Frutty, chocolate, gelado — já está coberto</div><div style="font-size:12px;color:var(--text2)">A 1.900 kcal/dia tens ~250 kcal de margem. Frutty no lanche substitui as castanhas — mesmas calorias, mais gostoso.</div></div></div>
+    <div class="lrow alt"><div style="flex:1"><div style="font-weight:600;font-size:13px;margin-bottom:3px">Sempre bate a proteína — mesmo nos dias flexíveis</div><div style="font-size:12px;color:var(--text2)">Carboidratos e gorduras podem variar. Proteína não. Ovos + whey + frango = estás coberto independentemente do resto.</div></div></div>
+  </div>
+  <div class="sl">Referência rápida de calorias</div>
+  <div class="treat-list">
+    <div class="trow" style="background:#FFF8FB">
+      <div class="trow-info"><div class="trow-n">Frutty <span class="htag">tua escolha</span></div><div class="trow-s">3–4 unidades (~50 g) · substitui castanhas no lanche</div></div>
+      <span class="trow-k">~150–180 kcal</span>
+    </div>
+    <div class="trow alt"><div class="trow-info"><div class="trow-n">Chocolate amargo 30 g</div></div><span class="trow-k">~170 kcal</span></div>
+    <div class="trow"><div class="trow-info"><div class="trow-n">Gelado 1 bola</div></div><span class="trow-k">~200 kcal</span></div>
+    <div class="trow alt"><div class="trow-info"><div class="trow-n">Gelado 2 bolas</div></div><span class="trow-k">~400 kcal</span></div>
+    <div class="trow"><div class="trow-info"><div class="trow-n">Cerveja 330 ml</div></div><span class="trow-k">~150 kcal</span></div>
+    <div class="trow alt"><div class="trow-info"><div class="trow-n">Copo de vinho 150 ml</div></div><span class="trow-k">~120 kcal</span></div>
+    <div class="trow"><div class="trow-info"><div class="trow-n">Prato principal de restaurante</div><div class="trow-s">muito variável</div></div><span class="trow-k">~600–900 kcal</span></div>
+    <div class="trow alt"><div class="trow-info"><div class="trow-n">Pizza 2 fatias</div></div><span class="trow-k">~500 kcal</span></div>
+    <div class="trow"><div class="trow-info"><div class="trow-n">Hambúrguer + batata frita</div></div><span class="trow-k">~900 kcal</span></div>
+  </div>
+  <div style="margin-top:10px">
+    <div class="alert ai">Esses valores são médias. Usa para planeamento aproximado, não para controle preciso.</div>
+  </div>
+</div>
+<!-- ===== CHECK-IN CLAUDE ===== -->
+<div id="checkin" class="page">
+  <div class="alert ai">O peso sozinho é um mau indicador durante uma recomposição corporal. Podes perder gordura e ganhar músculo ao mesmo tempo e a balança mal se mexe. Envia estes dados periodicamente para acompanhar a evolução real.</div>
+  <div class="sl">Frequência de check-in</div>
+  <div class="freq-grid">
+    <div class="fc"><div class="fc-v">Semanal</div><div class="fc-l">Peso</div><div class="fc-s">mesma manhã, mesmas condições</div></div>
+    <div class="fc"><div class="fc-v">2 semanas</div><div class="fc-l">Medidas + lifts</div><div class="fc-s">fita métrica + pesos do treino</div></div>
+    <div class="fc"><div class="fc-v">4 semanas</div><div class="fc-l">Foto + análise</div><div class="fc-s">mesma luz, mesmo horário</div></div>
+  </div>
+  <div class="sl">O que medir e enviar</div>
+  <div class="ci-block">
+    <div class="ci-block-hdr">Peso — toda semana</div>
+    <div class="ci-block-body">Mesmas condições sempre: <b>manhã, pós-banheiro, antes de comer</b>. Espera variações de 0,5–1,5 lb dia a dia — é normal. O que importa é a <b>tendência em 3–4 semanas</b>, não qualquer pesagem isolada.</div>
+  </div>
+  <div class="ci-block">
+    <div class="ci-block-hdr">Medidas corporais — a cada 2 semanas (fita métrica)</div>
+    <div class="ci-block-body">
+      <b>Cintura</b> — ao nível do umbigo<br>
+      <b>Quadril</b> — ponto mais largo<br>
+      <b>Peito</b> — ao nível dos mamilos<br>
+      <b>Braço direito</b> — flexionado, ponto mais largo<br>
+      <b>Braço esquerdo</b> — flexionado, ponto mais largo<br>
+      <b>Coxa direita</b> — meio da coxa<br>
+      <b>Coxa esquerda</b> — meio da coxa<br><br>
+      Cintura a descer + braços estáveis = perda de gordura com manutenção muscular. É exatamente o objetivo.
+    </div>
+  </div>
+  <div class="ci-block">
+    <div class="ci-block-hdr">Lifts principais — a cada 2 semanas</div>
+    <div class="ci-block-body">
+      <b>Supino halteres</b> — peso/halter e reps<br>
+      <b>Agachamento</b> — peso/lado e reps<br>
+      <b>Levantamento terra</b> — peso/lado e reps<br>
+      <b>Desenvolvimento</b> — peso/halter e reps<br>
+      <b>Pulldown (lat pulldown)</b> — peso total e reps<br><br>
+      Estes 5 dizem tudo sobre a tua progressão de força.
+    </div>
+  </div>
+  <div class="ci-block">
+    <div class="ci-block-hdr">Foto — a cada 4 semanas</div>
+    <div class="ci-block-body">Foto de frente e de lado. <b>Mesma iluminação, mesmo horário, mesma roupa</b>. O espelho mente — fotos ao longo do tempo não mentem. Numa recomposição moderada a foto muda claramente mesmo quando a balança mal se mexe.</div>
+  </div>
+  <div class="sl">Template de check-in para enviar ao Claude</div>
+  <div class="ci-template">
+Check-in — Semana [X]<br><br>
+PESO<br>
+Peso: ___ lb<br><br>
+MEDIDAS<br>
+Cintura: ___<br>
+Quadril: ___<br>
+Peito: ___<br>
+Braço D: ___ · Braço E: ___<br>
+Coxa D: ___ · Coxa E: ___<br><br>
+LIFTS<br>
+Supino: ___ lb/halter × ___ reps<br>
+Agachamento: ___ lb/lado × ___ reps<br>
+Levantamento terra: ___ lb/lado × ___ reps<br>
+Desenvolvimento: ___ lb/halter × ___ reps<br>
+Pulldown: ___ lb × ___ reps<br><br>
+NOTAS<br>
+Como me senti esta semana: ___<br>
+Algo que mudei: ___<br>
+Dúvidas: ___
+  </div>
+  <div class="alert as">Como usar: começa uma nova conversa no mesmo projeto Claude, cola o template preenchido e envia. Usa esta conversa como referência do plano — não para os check-ins.</div>
+  <div class="alert aw">Não uses só a balança para decidir se o plano está a funcionar. Se o peso estabilizar mas as medidas melhorarem e os lifts subirem, a recomposição está a acontecer — é exatamente isso que queres.</div>
+</div>
+<script>
+const days={
+  seg:{label:'Segunda-feira — Superior A · força',type:'u',dur:'65–70 min',rows:[
+    {ex:'Aquecimento',note:'Cardio leve + rotações de ombro',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
+    {ex:'Supino halteres',note:'Amplitude total, cotovelos abaixo do peito',s:'3',r:'6–8',w:'47,5 lb/halter',eq:'halteres',t:'k',rest:'90 seg–2 min'},
+    {ex:'Pulldown (lat pulldown)',note:'Puxada vertical principal',s:'3',r:'6–8',w:'115 lb',eq:'cabo',t:'k',rest:'90 seg'},
+    {ex:'Face pull',note:'Altura dos olhos, rotação externa — igual à quinta',s:'2',r:'15–20',w:'leve',eq:'cabo',t:'k',rest:'60 seg'},
+    {ex:'Desenvolvimento',note:'Halteres, descida controlada',s:'3',r:'6–8',w:'45 lb/halter',eq:'halteres',t:'k',rest:'90 seg–2 min'},
+    {ex:'Remada curvada',note:'Pegada pronada hoje · 2–3 min descanso',s:'3',r:'6–8',w:'35 lb/lado + barra',eq:'barra',t:'k',rest:'2–3 min'},
+    {ex:'Paralelas',note:'Tronco vertical = foco no tríceps',s:'3',r:'8–10',w:'peso corporal',eq:'BW',t:'n',rest:'90 seg'},
+    {ex:'Abdominal máquina',note:'Tempo controlado',s:'4',r:'12–15',w:'10 lb',eq:'máquina',t:'k',rest:'30–45 seg'},
+    {ex:'Relaxamento',note:'Peito, ombros, latíssimo — 5 min',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
+  ]},
+  ter:{label:'Terça-feira — Inferior A · força',type:'l',dur:'65–70 min',rows:[
+    {ex:'Aquecimento',note:'Cardio leve + círculos de anca + balanços de perna',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
+    {ex:'Agachamento livre',note:'2–3 min de descanso entre séries',s:'4',r:'6–8',w:'55 lb/lado + barra',eq:'barra',t:'k',rest:'2–3 min'},
+    {ex:'Levantamento terra romeno',note:'Dobradiça na anca, joelho ligeiramente fletido',s:'3',r:'8–10',w:'45 lb/lado + barra',eq:'barra',t:'n',rest:'2–3 min'},
+    {ex:'Leg press',note:'115 lb/lado no sled (~305–330 lb total)',s:'3',r:'8–10',w:'115 lb/lado',eq:'sled',t:'k',rest:'2 min'},
+    {ex:'Afundos caminhando',note:'Tronco ereto · afundos regulares também ok se falta espaço',s:'3',r:'10/perna',w:'22,5 lb/halter',eq:'halteres',t:'k',rest:'90 seg'},
+    {ex:'Flexão de pernas',note:'Excêntrico lento — 3 seg a descer',s:'3',r:'10–12',w:'80 lb',eq:'máquina',t:'k',rest:'90 seg'},
+    {ex:'Panturrilha sentado',note:'Amplitude total em baixo',s:'4',r:'15–20',w:'45 lb',eq:'máquina',t:'k',rest:'60 seg'},
+    {ex:'Woodchopper',note:'Faz os dois lados · começa pelo lado mais fraco',s:'3',r:'12–15 cada lado',w:'47,5 lb',eq:'cabo',t:'k',rest:'60 seg'},
+    {ex:'Relaxamento',note:'Flexores da anca, isquiotibiais, quadríceps — 5 min',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
+  ]},
+  qua:{label:'Quarta-feira — Cardio · Zona 2',type:'c',dur:'40–45 min',rows:[
+    {ex:'Corrida 5 km',note:'Ao ar livre ou passadeira',s:'1',r:'~40 min',w:'—',eq:'',t:'',rest:''},
+    {ex:'Ritmo alvo',note:'Zona 2 — consegues falar em frases completas',s:'—',r:'—',w:'~8 min/km',eq:'',t:'',rest:''},
+    {ex:'Passos',note:'Corrida já contribui com ~5.000–6.000 passos — completa o resto naturalmente ao longo do dia',s:'—',r:'—',w:'~10.000 total',eq:'',t:'',rest:''},
+    {ex:'Relaxamento',note:'5 min de caminhada + alongamento gêmeos e isquiotibiais',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
+  ]},
+  qui:{label:'Quinta-feira — Superior B · hipertrofia',type:'u',dur:'65–70 min',rows:[
+    {ex:'Aquecimento',note:'Band pull-aparts + círculos de braço',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
+    {ex:'Supino inclinado halteres',note:'Inclinação 30–45°, tempo controlado',s:'4',r:'10–12',w:'35 lb/halter',eq:'halteres',t:'k',rest:'90 seg–2 min'},
+    {ex:'Pulldown (lat pulldown)',note:'Puxada principal hoje — vai mais pesado',s:'3',r:'10–12',w:'115 lb',eq:'cabo',t:'k',rest:'90 seg'},
+    {ex:'Remada cabo sentado',note:'Cotovelos junto ao corpo, aperto no final',s:'3',r:'10–12',w:'moderado',eq:'cabo',t:'n',rest:'90 seg'},
+    {ex:'Elevação lateral',note:'Leve — forma estrita, sem balanço',s:'4',r:'12–15',w:'halteres leves',eq:'halteres',t:'n',rest:'60 seg'},
+    {ex:'Rosca bíceps',note:'Supinação no topo, excêntrico lento',s:'3',r:'12–15',w:'20 lb/halter',eq:'halteres',t:'k',rest:'90 seg'},
+    {ex:'Extensão tríceps corda',note:'Abre a corda em baixo',s:'3',r:'12–15',w:'47,5 lb',eq:'cabo',t:'k',rest:'60 seg'},
+    {ex:'Face pull',note:'Altura dos olhos, rotação externa',s:'2',r:'15–20',w:'leve',eq:'cabo',t:'n',rest:'60 seg'},
+    {ex:'Abdominal máquina',note:'',s:'4',r:'12–15',w:'10 lb',eq:'máquina',t:'k',rest:'30–45 seg'},
+    {ex:'Relaxamento',note:'Peito, bíceps, tríceps — 5 min',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
+  ]},
+  sex:{label:'Sexta-feira — Inferior B · hipertrofia',type:'l',dur:'65–70 min',rows:[
+    {ex:'Aquecimento',note:'Cardio leve + ativação de glúteos',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
+    {ex:'Leg press',note:'115 lb/lado no sled (~305–330 lb total)',s:'4',r:'10–12',w:'115 lb/lado',eq:'sled',t:'k',rest:'2 min'},
+    {ex:'Levantamento terra',note:'2–3 min descanso, foco na dobradiça',s:'3',r:'8–10',w:'45 lb/lado + barra',eq:'barra',t:'k',rest:'2–3 min'},
+    {ex:'Agachamento búlgaro',note:'Pé traseiro elevado, descida lenta',s:'3',r:'10/perna',w:'peso corp. → halter',eq:'BW/halteres',t:'n',rest:'90 seg'},
+    {ex:'Flexão de pernas',note:'Excêntrico lento',s:'4',r:'12–15',w:'80 lb',eq:'máquina',t:'k',rest:'90 seg'},
+    {ex:'Extensão de perna',note:'Não trava em cima',s:'3',r:'12–15',w:'moderado',eq:'máquina',t:'n',rest:'60 seg'},
+    {ex:'Panturrilha em pé',note:'Amplitude total, pausa em baixo',s:'4',r:'15–20',w:'moderado',eq:'máquina',t:'n',rest:'60 seg'},
+    {ex:'Woodchopper',note:'Faz os dois lados · começa pelo lado oposto ao de terça',s:'3',r:'12–15 cada lado',w:'47,5 lb',eq:'cabo',t:'k',rest:'60 seg'},
+    {ex:'Relaxamento',note:'Quadríceps, isquiotibiais, gêmeos — 5 min',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
+  ]},
+  sab:{label:'Sábado — Cardio · Zona 2',type:'c',dur:'40–45 min',rows:[
+    {ex:'Corrida 5 km',note:'Ao ar livre preferível',s:'1',r:'~40 min',w:'—',eq:'',t:'',rest:''},
+    {ex:'Opção B',note:'Caminhada rápida 45 min se as pernas estiverem muito cansadas',s:'—',r:'—',w:'—',eq:'',t:'',rest:''},
+    {ex:'Passos',note:'Corrida já contribui com ~5.000–6.000 passos — completa o resto naturalmente',s:'—',r:'—',w:'~10.000 total',eq:'',t:'',rest:''},
+    {ex:'Relaxamento',note:'Alongamento leve — ancas e gêmeos — 5 min',s:'1',r:'5 min',w:'—',eq:'',t:'',rest:''},
+  ]},
+  dom:{label:'Domingo — Descanso total',type:'r',dur:'Dia todo',rows:[
+    {ex:'Recuperação ativa (opcional)',note:'Caminhada leve 20–30 min — não é treino',s:'—',r:'—',w:'—',eq:'',t:'',rest:''},
+    {ex:'Mobilidade',note:'Flexores da anca, coluna torácica, isquiotibiais — 15–20 min',s:'—',r:'—',w:'—',eq:'',t:'',rest:''},
+    {ex:'Pilates (opcional)',note:'Pode substituir a mobilidade — 1x/semana ideal',s:'—',r:'—',w:'—',eq:'',t:'',rest:''},
+    {ex:'Preparação',note:'Cozinha frango + cozinha ovos para a semana',s:'—',r:'—',w:'—',eq:'',t:'',rest:''},
+  ]},
+};
+const cm={u:'#185FA5',l:'#3B6D11',c:'#854F0B',r:'#888780'};
+const bm={u:'#E6F1FB',l:'#EAF3DE',c:'#FAEEDA',r:'#F1EFE8'};
+function renderDay(day){
+  const d=days[day],col=cm[d.type],bg=bm[d.type];
+  const rows=d.rows.map((r,i)=>{
+    const cls=i%2===1?' class="alt"':'';
+    const tag=r.t==='n'?'<span class="etag en-new">novo</span>':r.t==='k'?'<span class="etag en-keep">manter</span>':'';
+    const eq=r.eq?`<span class="epill">${r.eq}</span>`:'';
+    const rest=r.rest?`<span class="rbadge">${r.rest}</span>`:'';
+    return`<tr${cls}><td style="width:27%"><span class="en">${r.ex}</span>${tag}${eq}</td><td style="width:27%;color:var(--text2);font-size:11px">${r.note}</td><td style="width:7%;text-align:center">${r.s}</td><td style="width:12%;text-align:center">${r.r}</td><td style="width:14%;text-align:right;font-size:11px">${r.w}</td><td style="width:13%;text-align:right">${rest}</td></tr>`;
+  }).join('');
+  document.getElementById('session-display').innerHTML=`<div class="sc"><div class="sc-hdr"><span class="sc-title">${d.label}</span><span class="sc-badge" style="background:${bg};color:${col}">${d.dur}</span></div><div style="overflow-x:auto"><table><thead><tr><th style="width:27%">Exercício</th><th style="width:27%">Nota</th><th style="width:7%;text-align:center">Séries</th><th style="width:12%;text-align:center">Reps</th><th style="width:14%;text-align:right">Peso</th><th style="width:13%;text-align:right">Descanso</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+}
+function selDay(day,el){
+  document.querySelectorAll('.db').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  renderDay(day);
+}
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tnb').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+renderDay('seg');
+</script>
+</body>
+</html>
